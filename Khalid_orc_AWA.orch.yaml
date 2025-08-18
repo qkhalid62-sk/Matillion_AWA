@@ -1,0 +1,64 @@
+type: "orchestration"
+version: "1.0"
+pipeline:
+  components:
+    Start:
+      type: "start"
+      transitions:
+        unconditional:
+        - "Create Table"
+      parameters:
+        componentName: "Start"
+    Create Table:
+      type: "create-table-v2"
+      parameters:
+        componentName: "Create Table"
+        createMethod: "Create"
+        database: "[Environment Default]"
+        schema: "[Environment Default]"
+        table:
+        snowflakeTableType: "Permanent"
+        columns:
+        defaultDdlCollation:
+        primaryKeys:
+        clusteringKeys:
+        dataRetentionTimeInDays:
+        comment:
+      postProcessing:
+        updateOutputMessage:
+        updateScalarVariables:
+    Create Table 2:
+      type: "create-table-v2"
+      parameters:
+        componentName: "Create Table 2"
+        createMethod: "Create"
+        database: "[Environment Default]"
+        schema: "[Environment Default]"
+        table:
+        snowflakeTableType: "Permanent"
+        columns:
+        defaultDdlCollation:
+        primaryKeys:
+        clusteringKeys:
+        dataRetentionTimeInDays:
+        comment:
+      postProcessing:
+        updateOutputMessage:
+        updateScalarVariables:
+design:
+  components:
+    Start:
+      position:
+        x: -340
+        "y": 0
+      tempMetlId: 1
+    Create Table:
+      position:
+        x: -180
+        "y": 0
+      tempMetlId: 2
+    Create Table 2:
+      position:
+        x: -70
+        "y": 10
+      tempMetlId: 3
